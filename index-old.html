@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Annapoorneswri Sweets</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --ink: #1E0E2C;
+  --gold: #C17F5A;
+  --paper: #F5E6D8;
+  --paper2: #EDD9C5;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+/* ── LOADER ── */
+#loader {
+  position: fixed; inset: 0; background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; transition: opacity 0.8s, visibility 0.8s;
+}
+#loader.hide { opacity: 0; visibility: hidden; }
+.loader-inner { text-align: center; }
+.loader-ring {
+  width: 80px; height: 80px; border-radius: 50%;
+  border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  animation: loader-spin 2s linear infinite;
+}
+@keyframes loader-spin { to { transform: rotate(360deg); } }
+.loader-text { font-family: 'Playfair Display', serif; font-size: 11px; letter-spacing: 0.4em; color: var(--gold); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 60px;
+  mix-blend-mode: normal;
+  transition: all 0.5s;
+}
+nav.scrolled {
+  background: var(--paper);
+  border-bottom: 1px solid rgba(30,14,44,0.12);
+  padding: 16px 60px;
+  box-shadow: 0 2px 40px rgba(30,14,44,0.06);
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px; font-style: italic;
+  color: var(--ink); letter-spacing: 0.05em;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 10px; letter-spacing: 0.3em; color: var(--ink);
+  text-decoration: none; opacity: 0.5; transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-cta {
+  font-size: 9px; letter-spacing: 0.25em;
+  border: 1px solid var(--ink); padding: 9px 22px;
+  background: none; color: var(--ink); cursor: pointer;
+  transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--ink); color: var(--paper); }
+.ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 2px; }
+.ham span { width: 22px; height: 1px; background: var(--ink); display: block; transition: 0.3s; }
+
+/* ── MOBILE MENU ── */
+.mob-menu {
+  display: none; position: fixed; inset: 0;
+  background: var(--ink); z-index: 600;
+  flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+}
+.mob-menu.open { display: flex; }
+.mob-close { position: absolute; top: 24px; right: 28px; background: none; border: none; color: var(--paper); font-size: 22px; cursor: pointer; }
+.mob-menu a { font-family: 'Playfair Display', serif; font-size: 28px; font-style: italic; color: var(--paper); text-decoration: none; opacity: 0.8; }
+
+/* ── HERO — SPLIT ASYMMETRIC ── */
+#home {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+.hero-left {
+  background: var(--ink);
+  display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 120px 64px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-left-pattern {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.04;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(193,127,90,1) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(193,127,90,1) 40px);
+}
+.hero-number {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(120px, 18vw, 200px); font-weight: 900;
+  color: var(--gold); opacity: 0.07; line-height: 1;
+  position: absolute; bottom: 40px; right: -20px;
+  pointer-events: none; user-select: none;
+}
+.hero-tag {
+  font-size: 9px; letter-spacing: 0.4em; color: var(--gold);
+  opacity: 0.6; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); opacity: 0.5; }
+.hero-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 64px); font-weight: 700;
+  color: var(--paper); line-height: 1.1; letter-spacing: 0.01em;
+  margin-bottom: 28px;
+  animation: heroIn 1.2s ease both;
+}
+.hero-h1 em { color: var(--gold); font-style: italic; }
+.hero-sub {
+  font-size: 14px; color: rgba(245,230,216,0.5);
+  line-height: 1.8; max-width: 320px; margin-bottom: 44px;
+  animation: heroIn 1.2s 0.2s ease both;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: heroIn 1.2s 0.4s ease both; }
+.btn-primary {
+  background: var(--gold); color: var(--ink);
+  font-size: 9px; letter-spacing: 0.25em;
+  padding: 14px 32px; border: none; cursor: pointer;
+  text-decoration: none; display: inline-block;
+  transition: opacity 0.25s;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost {
+  background: none; color: var(--paper);
+  font-size: 9px; letter-spacing: 0.25em;
+  padding: 14px 32px; border: 1px solid rgba(245,230,216,0.25); cursor: pointer;
+  text-decoration: none; display: inline-block;
+  transition: border-color 0.25s, color 0.25s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-right {
+  background: var(--paper2);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-right-deco {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%; aspect-ratio: 1;
+  border: 1px solid rgba(30,14,44,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-right-deco::before {
+  content: ''; position: absolute; inset: 20px;
+  border: 1px dashed rgba(30,14,44,0.06);
+  border-radius: 50%;
+}
+.hero-logo-wrap {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+  animation: heroIn 1.2s 0.3s ease both;
+}
+.hero-logo-wrap::before {
+  content: ''; position: absolute; inset: -12px;
+  border-radius: 50%; border: 1px solid rgba(30,14,44,0.15);
+  animation: spin-slow 25s linear infinite;
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.hero-logo-inner {
+  width: 110px; height: 110px;
+  border-radius: 50%; border: 1px solid rgba(30,14,44,0.2);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-logo-inner svg { width: 70px; height: 70px; }
+.hero-stats {
+  display: flex; gap: 40px; margin-top: 48px;
+  position: relative; z-index: 1;
+  animation: heroIn 1.2s 0.5s ease both;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700; color: var(--ink); line-height: 1;
+}
+.hero-stat-label { font-size: 9px; letter-spacing: 0.2em; color: var(--ink); opacity: 0.4; margin-top: 5px; }
+.hero-stat-divider { width: 1px; background: rgba(30,14,44,0.15); align-self: stretch; }
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  background: var(--ink); padding: 16px 0;
+  overflow: hidden; white-space: nowrap;
+  border-top: 1px solid rgba(193,127,90,0.2);
+  border-bottom: 1px solid rgba(193,127,90,0.2);
+}
+.marquee-track {
+  display: inline-flex; gap: 0;
+  animation: marquee 18s linear infinite;
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 20px;
+  padding: 0 28px;
+  font-size: 9px; letter-spacing: 0.35em; color: var(--gold); opacity: 0.7;
+}
+.marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); opacity: 0.4; }
+
+/* ── ABOUT ── */
+#about { padding: 120px 0; }
+.about-container { max-width: 1200px; margin: 0 auto; padding: 0 60px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; align-items: start; }
+.about-left { position: sticky; top: 120px; }
+.about-label { font-size: 9px; letter-spacing: 0.4em; color: var(--gold); margin-bottom: 16px; opacity: 0.7; }
+.about-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+  line-height: 1.15; margin-bottom: 32px;
+}
+.about-h2 em { font-style: italic; color: var(--gold); }
+.about-img-stack { position: relative; padding-bottom: 48px; }
+.about-img-main {
+  width: 100%; aspect-ratio: 3/4;
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.about-img-placeholder { opacity: 0.2; text-align: center; }
+.about-img-placeholder svg { width: 52px; margin-bottom: 10px; }
+.about-img-placeholder span { display: block; font-size: 9px; letter-spacing: 0.3em; color: var(--paper); }
+.about-img-accent {
+  position: absolute; bottom: 0; right: -24px;
+  width: 60%; aspect-ratio: 1;
+  background: var(--paper2);
+  border: 1px solid rgba(30,14,44,0.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.about-img-accent-inner { font-family: 'Playfair Display', serif; font-size: 36px; font-style: italic; color: var(--gold); opacity: 0.5; }
+.about-right { padding-top: 60px; }
+.about-right p {
+  font-size: 16px; line-height: 1.9; color: rgba(30,14,44,0.68);
+  margin-bottom: 20px;
+}
+.about-right p strong { color: var(--ink); font-weight: 400; font-style: italic; }
+.about-pullquote {
+  margin: 36px 0;
+  padding: 28px 32px;
+  border-left: 3px solid var(--gold);
+  background: rgba(193,127,90,0.05);
+}
+.about-pullquote p { font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic; font-weight: 400; line-height: 1.6; color: var(--ink); margin: 0; }
+.values-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 36px; }
+.value-card {
+  padding: 20px; border: 1px solid rgba(30,14,44,0.1);
+  transition: border-color 0.3s, background 0.3s;
+}
+.value-card:hover { border-color: var(--gold); background: rgba(193,127,90,0.04); }
+.value-card-icon { font-size: 20px; margin-bottom: 8px; }
+.value-card-name { font-size: 10px; letter-spacing: 0.2em; font-weight: 400; color: var(--ink); margin-bottom: 4px; }
+.value-card-desc { font-size: 12px; color: rgba(30,14,44,0.5); line-height: 1.5; }
+
+/* ── MENU ── */
+#menu { background: var(--ink); padding: 120px 0; }
+.menu-container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+.menu-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 24px; }
+.menu-head-left {}
+.menu-label { font-size: 9px; letter-spacing: 0.4em; color: var(--gold); opacity: 0.6; margin-bottom: 12px; }
+.menu-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+  color: var(--paper); line-height: 1.1;
+}
+.menu-h2 em { font-style: italic; color: var(--gold); }
+.filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  font-size: 9px; letter-spacing: 0.2em; color: var(--paper);
+  padding: 8px 18px; border: 1px solid rgba(245,230,216,0.15);
+  background: none; cursor: pointer; transition: all 0.25s; opacity: 0.6;
+}
+.pill.on, .pill:hover { opacity: 1; border-color: var(--gold); color: var(--gold); }
+
+.sweet-list { display: flex; flex-direction: column; }
+.sweet-row {
+  display: grid; grid-template-columns: 60px 1fr auto auto;
+  align-items: center; gap: 32px;
+  padding: 28px 0; border-bottom: 1px solid rgba(245,230,216,0.07);
+  cursor: pointer; transition: background 0.3s;
+  position: relative;
+}
+.sweet-row::before {
+  content: ''; position: absolute; left: -60px; right: -60px; top: 0; bottom: 0;
+  background: rgba(193,127,90,0.04);
+  opacity: 0; transition: opacity 0.3s;
+}
+.sweet-row:hover::before { opacity: 1; }
+.sweet-row-num {
+  font-family: 'Playfair Display', serif; font-size: 13px;
+  color: var(--gold); opacity: 0.35; font-style: italic;
+}
+.sweet-row-info {}
+.sweet-row-name {
+  font-family: 'Playfair Display', serif; font-size: 20px;
+  color: var(--paper); font-weight: 400; margin-bottom: 4px;
+  transition: color 0.3s;
+}
+.sweet-row:hover .sweet-row-name { color: var(--gold); }
+.sweet-row-desc { font-size: 12px; color: rgba(245,230,216,0.4); line-height: 1.5; }
+.sweet-row-tag {
+  font-size: 8px; letter-spacing: 0.2em;
+  border: 1px solid rgba(193,127,90,0.25);
+  color: var(--gold); padding: 5px 12px; opacity: 0.7;
+  white-space: nowrap;
+}
+.sweet-row-icon { font-size: 26px; opacity: 0.6; }
+.sweet-row-arrow {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid rgba(193,127,90,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 14px;
+  transition: background 0.3s, border-color 0.3s;
+}
+.sweet-row:hover .sweet-row-arrow { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+/* ── HIGHLIGHT BAND ── */
+.highlight-band {
+  background: var(--gold); padding: 80px 60px;
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background-color: rgba(30,14,44,0.1);
+}
+.hb-item {
+  background: var(--gold); padding: 48px 40px;
+  text-align: center; transition: background 0.3s;
+}
+.hb-item:hover { background: #b87248; }
+.hb-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px; font-weight: 900; color: var(--ink);
+  opacity: 0.15; line-height: 1; margin-bottom: 8px;
+}
+.hb-title { font-size: 10px; letter-spacing: 0.25em; color: var(--ink); margin-bottom: 8px; }
+.hb-desc { font-size: 13px; color: rgba(30,14,44,0.65); line-height: 1.6; }
+
+/* ── TESTIMONIAL ── */
+.testi-section {
+  padding: 120px 60px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; max-width: none;
+}
+.testi-left {
+  background: var(--paper2); padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.testi-quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 80px; color: var(--gold); line-height: 0.8;
+  margin-bottom: 24px; opacity: 0.5;
+}
+.testi-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 2vw, 24px); font-style: italic;
+  line-height: 1.7; color: var(--ink); margin-bottom: 28px;
+}
+.testi-author { font-size: 9px; letter-spacing: 0.3em; color: var(--ink); opacity: 0.45; }
+.testi-dots { display: flex; gap: 8px; margin-top: 32px; }
+.testi-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); opacity: 0.15; cursor: pointer; transition: opacity 0.2s; }
+.testi-dot.on { opacity: 0.5; background: var(--gold); }
+.testi-right {
+  background: var(--ink); padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.testi-r-label { font-size: 9px; letter-spacing: 0.35em; color: var(--gold); opacity: 0.55; margin-bottom: 24px; }
+.testi-r-h { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--paper); font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+.testi-r-p { font-size: 13px; color: rgba(245,230,216,0.45); line-height: 1.8; margin-bottom: 36px; }
+.testi-r-btn {
+  background: var(--gold); color: var(--ink);
+  font-size: 9px; letter-spacing: 0.25em;
+  padding: 14px 32px; border: none; cursor: pointer;
+  display: inline-block; text-decoration: none;
+  align-self: flex-start; transition: opacity 0.25s;
+}
+.testi-r-btn:hover { opacity: 0.85; }
+
+/* ── CONTACT ── */
+#contact { padding: 120px 0; background: var(--paper); }
+.contact-container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+.contact-top { text-align: center; margin-bottom: 80px; }
+.contact-label { font-size: 9px; letter-spacing: 0.4em; color: var(--gold); opacity: 0.7; margin-bottom: 14px; }
+.contact-h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: var(--ink); }
+.contact-h2 em { font-style: italic; color: var(--gold); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+.contact-details { display: flex; flex-direction: column; gap: 0; }
+.contact-item {
+  display: flex; gap: 20px; padding: 24px 0;
+  border-bottom: 1px solid rgba(30,14,44,0.08);
+  align-items: flex-start;
+}
+.contact-item:first-child { border-top: 1px solid rgba(30,14,44,0.08); }
+.c-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border: 1px solid rgba(30,14,44,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.c-lbl { font-size: 8px; letter-spacing: 0.25em; color: var(--ink); opacity: 0.4; margin-bottom: 5px; }
+.c-val { font-size: 14px; color: var(--ink); line-height: 1.6; opacity: 0.8; }
+.map-box {
+  margin-top: 24px; border: 1px solid rgba(30,14,44,0.1);
+  height: 150px; display: flex; align-items: center; justify-content: center;
+  background: rgba(30,14,44,0.03); position: relative;
+}
+.map-box span { font-size: 9px; letter-spacing: 0.2em; color: var(--ink); opacity: 0.3; }
+.wa-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--ink); color: var(--paper);
+  font-size: 9px; letter-spacing: 0.25em;
+  padding: 16px; width: 100%; text-decoration: none;
+  margin-top: 16px; border: none; cursor: pointer;
+  transition: background 0.3s;
+}
+.wa-btn:hover { background: var(--gold); color: var(--ink); }
+
+/* form */
+.form-wrap { background: var(--ink); padding: 52px; }
+.form-title { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: var(--paper); margin-bottom: 36px; font-weight: 400; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.fg { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.fg label { font-size: 8px; letter-spacing: 0.3em; color: var(--gold); opacity: 0.6; }
+.fg input, .fg select, .fg textarea {
+  background: none; border: none; border-bottom: 1px solid rgba(245,230,216,0.15);
+  color: var(--paper); font-family: 'Jost', sans-serif; font-size: 14px;
+  font-weight: 300; padding: 10px 0; outline: none; width: 100%;
+  transition: border-color 0.3s;
+}
+.fg input::placeholder, .fg textarea::placeholder { color: rgba(245,230,216,0.25); font-style: italic; }
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--gold); }
+.fg select option { background: var(--ink); }
+.fg textarea { height: 80px; resize: none; }
+.form-send {
+  background: var(--gold); color: var(--ink);
+  font-size: 9px; letter-spacing: 0.3em;
+  padding: 14px 40px; border: none; cursor: pointer;
+  transition: opacity 0.25s; margin-top: 8px;
+}
+.form-send:hover { opacity: 0.85; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 60px;
+}
+.footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(245,230,216,0.08); }
+.footer-brand-name { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--paper); margin-bottom: 12px; }
+.footer-brand-tag { font-size: 12px; color: rgba(245,230,216,0.35); line-height: 1.7; max-width: 260px; }
+.footer-col-title { font-size: 8px; letter-spacing: 0.3em; color: var(--gold); opacity: 0.6; margin-bottom: 20px; }
+.footer-col a { display: block; font-size: 13px; color: rgba(245,230,216,0.45); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+.footer-col a:hover { color: var(--paper); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+.footer-copy { font-size: 11px; color: rgba(245,230,216,0.25); }
+.footer-socials { display: flex; gap: 12px; }
+.fs {
+  width: 34px; height: 34px; border: 1px solid rgba(245,230,216,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(245,230,216,0.4); font-size: 14px; text-decoration: none;
+  transition: all 0.3s; border-radius: 50%;
+}
+.fs:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal.up { opacity: 1; transform: none; }
+.reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal-left.up { opacity: 1; transform: none; }
+.reveal-right { opacity: 0; transform: translateX(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal-right.up { opacity: 1; transform: none; }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  nav { padding: 18px 24px; }
+  nav.scrolled { padding: 14px 24px; }
+  .nav-links, .nav-cta { display: none; }
+  .ham { display: flex; }
+  #home { grid-template-columns: 1fr; }
+  .hero-left { padding: 120px 28px 60px; min-height: 60vh; }
+  .hero-right { padding: 60px 28px; min-height: 50vh; }
+  .about-container { grid-template-columns: 1fr; gap: 40px; padding: 0 28px; }
+  .about-left { position: static; }
+  .menu-container { padding: 0 28px; }
+  .sweet-row { grid-template-columns: 40px 1fr auto; }
+  .sweet-row-tag { display: none; }
+  .highlight-band { grid-template-columns: 1fr; padding: 0; }
+  .hb-item { padding: 36px 28px; }
+  .testi-section { grid-template-columns: 1fr; padding: 0; }
+  .testi-left, .testi-right { padding: 60px 28px; }
+  .contact-container { padding: 0 28px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .form-wrap { padding: 32px 24px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  footer { padding: 40px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-ring">
+      <span style="font-size:22px;color:#C17F5A;">✿</span>
+    </div>
+    <div class="loader-text">SRI ANNAPOORNESWRI</div>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="document.getElementById('mobMenu').classList.remove('open')">✕</button>
+  <a href="#home" onclick="document.getElementById('mobMenu').classList.remove('open')">Home</a>
+  <a href="#about" onclick="document.getElementById('mobMenu').classList.remove('open')">About</a>
+  <a href="#menu" onclick="document.getElementById('mobMenu').classList.remove('open')">Menu</a>
+  <a href="#contact" onclick="document.getElementById('mobMenu').classList.remove('open')">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#home" class="nav-brand">Sri Annapoorneswri Sweets</a>
+  <ul class="nav-links">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#menu">MENU</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">ORDER NOW</button>
+  <button class="ham" onclick="document.getElementById('mobMenu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <div class="hero-left">
+    <div class="hero-left-pattern"></div>
+    <div class="hero-number">25</div>
+    <div class="hero-tag">EST. 2000 · BENGALURU</div>
+    <h1 class="hero-h1">Sri<br><em>Annapoorneswri</em><br>Sweets</h1>
+    <p class="hero-sub">Named after the goddess of nourishment and abundance. Every sweet is an offering of devotion, crafted with the purest South Indian tradition.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">EXPLORE MENU</a>
+      <a href="#about" class="btn-ghost">OUR STORY</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-deco"></div>
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-inner">
+        <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="12" width="46" height="46" stroke="#1E0E2C" stroke-width="1"/>
+          <rect x="18" y="18" width="34" height="34" stroke="#1E0E2C" stroke-width="0.6" transform="rotate(45 35 35)"/>
+          <circle cx="35" cy="35" r="11" stroke="#C17F5A" stroke-width="1.2"/>
+          <path d="M35 12 Q39 24 35 35 Q31 24 35 12Z" stroke="#1E0E2C" stroke-width="0.8" fill="none"/>
+          <path d="M35 58 Q39 46 35 35 Q31 46 35 58Z" stroke="#1E0E2C" stroke-width="0.8" fill="none"/>
+          <path d="M12 35 Q24 39 35 35 Q24 31 12 35Z" stroke="#1E0E2C" stroke-width="0.8" fill="none"/>
+          <path d="M58 35 Q46 39 35 35 Q46 31 58 35Z" stroke="#1E0E2C" stroke-width="0.8" fill="none"/>
+          <circle cx="35" cy="35" r="3.5" fill="#C17F5A"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">25+</div>
+        <div class="hero-stat-label">YEARS</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50+</div>
+        <div class="hero-stat-label">SWEETS</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">10K+</div>
+        <div class="hero-stat-label">FAMILIES</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item"><span class="marquee-dot"></span>KAJU KATLI</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>MOTICHOOR LADOO</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>BADAM HALWA</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>FESTIVE BOXES</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>CHOCOLATE SWEETS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>SUGAR FREE</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>WEDDING HAMPERS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>PONGAL SPECIALS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>KAJU KATLI</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>MOTICHOOR LADOO</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>BADAM HALWA</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>FESTIVE BOXES</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>CHOCOLATE SWEETS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>SUGAR FREE</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>WEDDING HAMPERS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>PONGAL SPECIALS</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-container">
+    <div class="about-left">
+      <div class="about-label reveal">OUR HERITAGE</div>
+      <h2 class="about-h2 reveal">The Goddess of <em>Nourishment</em></h2>
+      <div class="about-img-stack reveal">
+        <div class="about-img-main">
+          <div class="about-img-placeholder">
+            <svg viewBox="0 0 52 52" fill="none"><rect x="6" y="6" width="40" height="40" stroke="#F5E6D8" stroke-width="0.8" stroke-dasharray="4 2"/><circle cx="26" cy="20" r="7" stroke="#F5E6D8" stroke-width="0.6"/><path d="M8 42 Q16 30 26 32 Q36 34 44 24" stroke="#F5E6D8" stroke-width="0.6" fill="none"/></svg>
+            <span>SHOP PHOTO</span>
+          </div>
+        </div>
+        <div class="about-img-accent">
+          <div class="about-img-accent-inner">✿</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <p class="reveal">Sri Annapoorneswri Sweets is named after <strong>Goddess Annapoorneswari</strong> — the divine mother of nourishment and abundance. In her name, we craft sweets that carry blessings of purity, love, and devotion.</p>
+      <p class="reveal" style="transition-delay:0.1s">Founded over two decades ago in the heart of Bengaluru, we have been the trusted sweet shop for thousands of families celebrating weddings, festivals, and everyday moments of joy.</p>
+      <div class="about-pullquote reveal" style="transition-delay:0.15s">
+        <p>"We do not just make sweets. We make memories, wrapped in devotion and tied with love."</p>
+      </div>
+      <p class="reveal" style="transition-delay:0.2s">Every recipe is <strong>traditional South Indian</strong>, passed through generations with care. We use only pure ingredients — no preservatives, no shortcuts, no compromises.</p>
+      <div class="values-row">
+        <div class="value-card reveal" style="transition-delay:0.05s">
+          <div class="value-card-icon">🪔</div>
+          <div class="value-card-name">TRADITION</div>
+          <div class="value-card-desc">Recipes unchanged for generations, made exactly as our ancestors made them</div>
+        </div>
+        <div class="value-card reveal" style="transition-delay:0.1s">
+          <div class="value-card-icon">🌿</div>
+          <div class="value-card-name">PURITY</div>
+          <div class="value-card-desc">Only the finest natural ingredients, sourced fresh with no preservatives</div>
+        </div>
+        <div class="value-card reveal" style="transition-delay:0.15s">
+          <div class="value-card-icon">🙏</div>
+          <div class="value-card-name">DEVOTION</div>
+          <div class="value-card-desc">Every sweet made with prayer and care, as an offering of love</div>
+        </div>
+        <div class="value-card reveal" style="transition-delay:0.2s">
+          <div class="value-card-icon">✦</div>
+          <div class="value-card-name">QUALITY</div>
+          <div class="value-card-desc">Uncompromising standards that have kept families returning for 25 years</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-container">
+    <div class="menu-head reveal">
+      <div class="menu-head-left">
+        <div class="menu-label">OUR COLLECTION</div>
+        <h2 class="menu-h2">The Sweet <em>Collection</em></h2>
+      </div>
+      <div class="filter-pills">
+        <button class="pill on" onclick="doFilter('all',this)">ALL</button>
+        <button class="pill" onclick="doFilter('trad',this)">TRADITIONAL</button>
+        <button class="pill" onclick="doFilter('choc',this)">CHOCOLATE</button>
+        <button class="pill" onclick="doFilter('fest',this)">FESTIVE</button>
+        <button class="pill" onclick="doFilter('sf',this)">SUGAR-FREE</button>
+      </div>
+    </div>
+    <div class="sweet-list" id="sweetList">
+      <div class="sweet-row reveal" data-c="trad">
+        <div class="sweet-row-num">01</div>
+        <div class="sweet-row-info">
+          <div class="sweet-row-name">Kaju Sweets</div>
+          <div class="sweet-row-desc">Silken cashew confections — katli, roll, pista barfi, and kaju rose</div>
+        </div>
+        <div class="sweet-row-tag">TRADITIONAL</div>
+        <div class="sweet-row-arrow">→</div>
+      </div>
+      <div class="sweet-row reveal" data-c="trad" style="transition-delay:0.05s">
+        <div class="sweet-row-num">02</div>
+        <div class="sweet-row-info">
+          <div class="sweet-row-name">Ladoos</div>
+          <div class="sweet-row-desc">Besan, motichoor, rava, coconut, and til ladoos — spheres of celebration</div>
+        </div>
+        <div class="sweet-row-tag">TRADITIONAL</div>
+        <div class="sweet-row-arrow">→</div>
+      </div>
+      <div class="sweet-row reveal" data-c="trad" style="transition-delay:0.1s">
+        <div class="sweet-row-num">03</div>
+        <div class="sweet-row-info">
+          <div class="sweet-row-name">Halwa</div>
+          <div class="sweet-row-desc">Slow-cooked carrot, moong dal, badam, and rava halwa — warm as a blessing</div>
+        </div>
+        <div class="sweet-row-tag">TRADITIONAL</div>
+        <div class="sweet-row-arrow">→</div>
+      </div>
+      <div class="sweet-row reveal" data-c="choc" style="transition-delay:0.15s">
+        <div class="sweet-row-num">04</div>
+        <div class="sweet-row-info">
+          <div class="sweet-row-name">Chocolate Sweets</div>
+          <div class="sweet-row-desc">Traditional sweets reimagined with Belgian chocolate — modern, indulgent gifting</div>
+        </div>
+        <div class="sweet-row-tag">CHOCOLATE</div>
+        <div class="sweet-row-arrow">→</div>
+      </div>
+      <div class="sweet-row reveal" data-c="fest" style="transition-delay:0.2s">
+        <div class="sweet-row-num">05</div>
+        <div class="sweet-row-info">
+          <div class="sweet-row-name">Festive Gift Boxes</div>
+          <div class="sweet-row-desc">Curated luxury hampers for Diwali, weddings, Pongal, and every sacred occasion</div>
+        </div>
+        <div class="sweet-row-tag">FESTIVE</div>
+        <div class="sweet-row-arrow">→</div>
+      </div>
+      <div class="sweet-row reveal" data-c="sf" style="transition-delay:0.25s">
+        <div class="sweet-row-num">06</div>
+        <div class="sweet-row-info">
+          <div class="sweet-row-name">Sugar-Free Collection</div>
+          <div class="sweet-row-desc">Jaggery and natural sweetener alternatives — indulgence without compromise</div>
+        </div>
+        <div class="sweet-row-tag">SUGAR-FREE</div>
+        <div class="sweet-row-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHT BAND -->
+<div class="highlight-band">
+  <div class="hb-item reveal">
+    <div class="hb-num">01</div>
+    <div class="hb-title">HANDCRAFTED DAILY</div>
+    <div class="hb-desc">Every sweet made fresh by hand each morning using traditional methods</div>
+  </div>
+  <div class="hb-item reveal" style="transition-delay:0.1s">
+    <div class="hb-num">02</div>
+    <div class="hb-title">PURE INGREDIENTS</div>
+    <div class="hb-desc">No preservatives, no artificial colours — only nature's finest</div>
+  </div>
+  <div class="hb-item reveal" style="transition-delay:0.2s">
+    <div class="hb-num">03</div>
+    <div class="hb-title">LUXURY PACKAGING</div>
+    <div class="hb-desc">Gift boxes designed for weddings, festivals, and every celebration</div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL + CTA -->
+<div class="testi-section">
+  <div class="testi-left reveal-left">
+    <div class="testi-quote-mark">"</div>
+    <p class="testi-text" id="testiText">The kaju katli melts on your tongue like a prayer answered. We have ordered for three weddings and the quality never wavers.</p>
+    <div class="testi-author" id="testiAuthor">— MEENA KRISHNAMURTHY, BENGALURU</div>
+    <div class="testi-dots">
+      <div class="testi-dot on" onclick="setTesti(0)"></div>
+      <div class="testi-dot" onclick="setTesti(1)"></div>
+      <div class="testi-dot" onclick="setTesti(2)"></div>
+    </div>
+  </div>
+  <div class="testi-right reveal-right">
+    <div class="testi-r-label">CELEBRATE WITH US</div>
+    <h3 class="testi-r-h">Planning something special?</h3>
+    <p class="testi-r-p">Whether it's a grand wedding, Diwali gifting, or a simple gesture of love — we craft sweets that make every moment sacred and memorable.</p>
+    <a href="#contact" class="testi-r-btn">PLACE AN ORDER</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-container">
+    <div class="contact-top reveal">
+      <div class="contact-label">REACH US</div>
+      <h2 class="contact-h2">Visit or <em>Order</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-details reveal-left">
+        <div class="contact-item">
+          <div class="c-icon">📍</div>
+          <div>
+            <div class="c-lbl">ADDRESS</div>
+            <div class="c-val">123 Sweet Lane, Basavanagudi<br>Bengaluru, Karnataka 560004</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">📞</div>
+          <div>
+            <div class="c-lbl">PHONE</div>
+            <div class="c-val">+91 98765 43210</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">✉</div>
+          <div>
+            <div class="c-lbl">EMAIL</div>
+            <div class="c-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="462e232a2a290635342f272828273629293428233531342f6825292b">[email&#160;protected]</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">⏰</div>
+          <div>
+            <div class="c-lbl">HOURS</div>
+            <div class="c-val">Mon – Sat: 8am – 9pm<br>Sunday: 9am – 7pm</div>
+          </div>
+        </div>
+        <div class="map-box"><span>GOOGLE MAPS EMBED</span></div>
+        <a href="https://wa.me/919876543210" class="wa-btn">💬 &nbsp; ORDER VIA WHATSAPP</a>
+      </div>
+      <div class="reveal-right">
+        <div class="form-wrap">
+          <div class="form-title">Place an enquiry</div>
+          <div class="form-row">
+            <div class="fg"><label>YOUR NAME</label><input type="text" placeholder="e.g. Priya Sharma"></div>
+            <div class="fg"><label>PHONE</label><input type="tel" placeholder="+91 98765 43210"></div>
+          </div>
+          <div class="fg">
+            <label>OCCASION</label>
+            <select>
+              <option value="" disabled selected>Select occasion</option>
+              <option>Wedding</option>
+              <option>Diwali</option>
+              <option>Pongal</option>
+              <option>Birthday</option>
+              <option>Corporate</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>MESSAGE</label><textarea placeholder="Tell us what you need — quantity, date, special requests..."></textarea></div>
+          <button class="form-send">SEND ENQUIRY</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Sri Annapoorneswri Sweets</div>
+      <div class="footer-brand-tag">Named after the goddess of nourishment and abundance. Crafting traditional South Indian sweets with devotion since 2000.</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">NAVIGATE</div>
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#menu">Our Menu</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">CONTACT</div>
+      <a href="#">+91 98765 43210</a>
+      <a href="#"><span class="__cf_email__" data-cfemail="ff979a939390bf8c8d969e91919e8f90908d919a8c888d96d19c9092">[email&#160;protected]</span></a>
+      <a href="#">Basavanagudi, Bengaluru</a>
+      <a href="#">Mon–Sat: 8am – 9pm</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Sri Annapoorneswri Sweets · All rights reserved</div>
+    <div class="footer-socials">
+      <a href="#" class="fs">f</a>
+      <a href="#" class="fs">ig</a>
+      <a href="#" class="fs">yt</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Loader
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loader').classList.add('hide'), 1200);
+  });
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  });
+
+  // Reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('up'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
+
+  // Filter
+  function doFilter(cat, btn) {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
+    btn.classList.add('on');
+    document.querySelectorAll('.sweet-row').forEach(row => {
+      const show = cat === 'all' || row.dataset.c === cat;
+      row.style.transition = 'opacity 0.3s, max-height 0.4s';
+      row.style.opacity = show ? '1' : '0';
+      row.style.maxHeight = show ? '200px' : '0';
+      row.style.overflow = 'hidden';
+      row.style.paddingTop = show ? '' : '0';
+      row.style.paddingBottom = show ? '' : '0';
+    });
+  }
+
+  // Testimonials
+  const testis = [
+    { text: 'The kaju katli melts on your tongue like a prayer answered. We have ordered for three weddings and the quality never wavers.', author: '— MEENA KRISHNAMURTHY, BENGALURU' },
+    { text: 'Sri Annapoorneswri is our family sweet shop for every Diwali. The festive boxes are simply beautiful — inside and out.', author: '— RAJAN IYER, MYSURU' },
+    { text: 'We ordered 200 boxes for our daughter\'s wedding. Every guest commented on the quality. Truly a shop that honours its name.', author: '— LAKSHMI SUBRAMANIAM, CHENNAI' }
+  ];
+  function setTesti(i) {
+    document.getElementById('testiText').style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('testiText').textContent = testis[i].text;
+      document.getElementById('testiAuthor').textContent = testis[i].author;
+      document.getElementById('testiText').style.opacity = '1';
+    }, 300);
+    document.querySelector

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Annapoorneswri Sweets</title>
+<link rel="icon" type="image/png" href="public/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-ring">
+      <img src="public/logo.png" alt="Logo" class="loader-logo-img">
+    </div>
+    <div class="loader-text">SRI ANNAPOORNESWARI</div>
+  </div>
+</div>
+
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="document.getElementById('mobMenu').classList.remove('open')">✕</button>
+  <a href="#home" onclick="document.getElementById('mobMenu').classList.remove('open')">Home</a>
+  <a href="#about" onclick="document.getElementById('mobMenu').classList.remove('open')">About</a>
+  <a href="#menu" onclick="document.getElementById('mobMenu').classList.remove('open')">Menu</a>
+  <a href="#contact" onclick="document.getElementById('mobMenu').classList.remove('open')">Contact</a>
+</div>
+
+<nav id="nav">
+  <a href="#home" class="nav-brand">
+    <img src="public/logo.png" alt="Sri Annapoorneswri Sweets Logo" class="nav-logo-img">
+    <span class="nav-brand-text">Sri Annapoorneswri Sweets</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#menu">MENU</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">ORDER NOW</button>
+  <button class="ham" onclick="document.getElementById('mobMenu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section id="home">
+  <div class="hero-left">
+    <div class="hero-left-pattern"></div>
+    <div class="hero-number">25</div>
+    <div class="hero-tag">EST. 2000 · BENGALURU</div>
+    <h1 class="hero-h1">Sri<br><em>Annapoorneswri</em><br>Sweets</h1>
+    <p class="hero-sub">Named after the goddess of nourishment and abundance. Every sweet is an offering of devotion, crafted with the purest South Indian tradition.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">EXPLORE MENU</a>
+      <a href="#about" class="btn-ghost">OUR STORY</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-deco"></div>
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-inner">
+        <img src="public/logo.png" alt="Sri Annapoorneswri Sweets" class="hero-logo-img">
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">25+</div>
+        <div class="hero-stat-label">YEARS</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50+</div>
+        <div class="hero-stat-label">SWEETS</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">10K+</div>
+        <div class="hero-stat-label">FAMILIES</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>KAJU KATLI</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>MOTICHOOR LADOO</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>BADAM HALWA</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>FESTIVE BOXES</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>CHOCOLATE SWEETS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>SUGAR FREE</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>WEDDING HAMPERS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>PONGAL SPECIALS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>KAJU KATLI</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>MOTICHOOR LADOO</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>BADAM HALWA</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>FESTIVE BOXES</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>CHOCOLATE SWEETS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>SUGAR FREE</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>WEDDING HAMPERS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>PONGAL SPECIALS</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="about-container">
+    <div class="about-left">
+      <div class="about-label reveal">OUR HERITAGE</div>
+      <h2 class="about-h2 reveal">The Goddess of <em>Nourishment</em></h2>
+      <div class="about-img-stack reveal">
+        <div class="about-img-main">
+          <img src="public/logo.png" alt="Sri Annapoorneswri Sweets" class="about-logo-img">
+        </div>
+        <div class="about-img-accent">
+          <div class="about-img-accent-inner">✿</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <p class="reveal">Sri Annapoorneswri Sweets is named after <strong>Goddess Annapoorneswari</strong> — the divine mother of nourishment and abundance. In her name, we craft sweets that carry blessings of purity, love, and devotion.</p>
+      <p class="reveal" style="transition-delay:0.1s">Founded over two decades ago in the heart of Bengaluru, we have been the trusted sweet shop for thousands of families celebrating weddings, festivals, and everyday moments of joy.</p>
+      <div class="about-pullquote reveal" style="transition-delay:0.15s">
+        <p>"We do not just make sweets. We make memories, wrapped in devotion and tied with love."</p>
+      </div>
+      <p class="reveal" style="transition-delay:0.2s">Every recipe is <strong>traditional South Indian</strong>, passed through generations with care. We use only pure ingredients — no preservatives, no shortcuts, no compromises.</p>
+      <div class="values-row">
+        <div class="value-card reveal" style="transition-delay:0.05s"><div class="value-card-icon">🪔</div><div class="value-card-name">TRADITION</div><div class="value-card-desc">Recipes unchanged for generations</div></div>
+        <div class="value-card reveal" style="transition-delay:0.1s"><div class="value-card-icon">🌿</div><div class="value-card-name">PURITY</div><div class="value-card-desc">Only the finest natural ingredients</div></div>
+        <div class="value-card reveal" style="transition-delay:0.15s"><div class="value-card-icon">🙏</div><div class="value-card-name">DEVOTION</div><div class="value-card-desc">Every sweet made with prayer and care</div></div>
+        <div class="value-card reveal" style="transition-delay:0.2s"><div class="value-card-icon">✦</div><div class="value-card-name">QUALITY</div><div class="value-card-desc">Uncompromising standards since 2000</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="menu-container">
+    <div class="menu-head reveal">
+      <div class="menu-head-left">
+        <div class="menu-label">OUR COLLECTION</div>
+        <h2 class="menu-h2">The Sweet <em>Collection</em></h2>
+      </div>
+      <div class="filter-pills">
+        <button class="pill on" onclick="doFilter('all',this)">ALL</button>
+        <button class="pill" onclick="doFilter('trad',this)">TRADITIONAL</button>
+        <button class="pill" onclick="doFilter('choc',this)">CHOCOLATE</button>
+        <button class="pill" onclick="doFilter('fest',this)">FESTIVE</button>
+        <button class="pill" onclick="doFilter('sf',this)">SUGAR-FREE</button>
+      </div>
+    </div>
+    <div class="sweet-list" id="sweetList">
+      <div class="sweet-row reveal" data-c="trad"><div class="sweet-row-num">01</div><div class="sweet-row-info"><div class="sweet-row-name">Kaju Sweets</div><div class="sweet-row-desc">Silken cashew confections — katli, roll, pista barfi, and kaju rose</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="trad" style="transition-delay:0.05s"><div class="sweet-row-num">02</div><div class="sweet-row-info"><div class="sweet-row-name">Ladoos</div><div class="sweet-row-desc">Besan, motichoor, rava, coconut, and til ladoos — spheres of celebration</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="trad" style="transition-delay:0.1s"><div class="sweet-row-num">03</div><div class="sweet-row-info"><div class="sweet-row-name">Halwa</div><div class="sweet-row-desc">Slow-cooked carrot, moong dal, badam, and rava halwa — warm as a blessing</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="choc" style="transition-delay:0.15s"><div class="sweet-row-num">04</div><div class="sweet-row-info"><div class="sweet-row-name">Chocolate Sweets</div><div class="sweet-row-desc">Traditional sweets reimagined with Belgian chocolate — modern, indulgent gifting</div></div><div class="sweet-row-tag">CHOCOLATE</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="fest" style="transition-delay:0.2s"><div class="sweet-row-num">05</div><div class="sweet-row-info"><div class="sweet-row-name">Festive Gift Boxes</div><div class="sweet-row-desc">Curated luxury hampers for Diwali, weddings, Pongal, and every sacred occasion</div></div><div class="sweet-row-tag">FESTIVE</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="sf" style="transition-delay:0.25s"><div class="sweet-row-num">06</div><div class="sweet-row-info"><div class="sweet-row-name">Sugar-Free Collection</div><div class="sweet-row-desc">Jaggery and natural sweetener alternatives — indulgence without compromise</div></div><div class="sweet-row-tag">SUGAR-FREE</div><div class="sweet-row-arrow">→</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="highlight-band">
+  <div class="hb-item reveal"><div class="hb-num">01</div><div class="hb-title">HANDCRAFTED DAILY</div><div class="hb-desc">Every sweet made fresh by hand each morning using traditional methods</div></div>
+  <div class="hb-item reveal" style="transition-delay:0.1s"><div class="hb-num">02</div><div class="hb-title">PURE INGREDIENTS</div><div class="hb-desc">No preservatives, no artificial colours — only nature's finest</div></div>
+  <div class="hb-item reveal" style="transition-delay:0.2s"><div class="hb-num">03</div><div class="hb-title">LUXURY PACKAGING</div><div class="hb-desc">Gift boxes designed for weddings, festivals, and every celebration</div></div>
+</div>
+
+<div class="testi-section">
+  <div class="testi-left reveal-left">
+    <div class="testi-quote-mark">"</div>
+    <p class="testi-text" id="testiText">The kaju katli melts on your tongue like a prayer answered. We have ordered for three weddings and the quality never wavers.</p>
+    <div class="testi-author" id="testiAuthor">— MEENA KRISHNAMURTHY, BENGALURU</div>
+    <div class="testi-dots">
+      <div class="testi-dot on" onclick="setTesti(0)"></div>
+      <div class="testi-dot" onclick="setTesti(1)"></div>
+      <div class="testi-dot" onclick="setTesti(2)"></div>
+    </div>
+  </div>
+  <div class="testi-right reveal-right">
+    <div class="testi-r-label">CELEBRATE WITH US</div>
+    <h3 class="testi-r-h">Planning something special?</h3>
+    <p class="testi-r-p">Whether it's a grand wedding, Diwali gifting, or a simple gesture of love — we craft sweets that make every moment sacred and memorable.</p>
+    <a href="#contact" class="testi-r-btn">PLACE AN ORDER</a>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="contact-container">
+    <div class="contact-top reveal">
+      <div class="contact-label">REACH US</div>
+      <h2 class="contact-h2">Visit or <em>Order</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-details reveal-left">
+        <div class="contact-item"><div class="c-icon">📍</div><div><div class="c-lbl">ADDRESS</div><div class="c-val">123 Sweet Lane, Basavanagudi<br>Bengaluru, Karnataka 560004</div></div></div>
+        <div class="contact-item"><div class="c-icon">📞</div><div><div class="c-lbl">PHONE</div><div class="c-val">+91 98765 43210</div></div></div>
+        <div class="contact-item"><div class="c-icon">✉</div><div><div class="c-lbl">EMAIL</div><div class="c-val">hello@sriannapoorneswri.com</div></div></div>
+        <div class="contact-item"><div class="c-icon">⏰</div><div><div class="c-lbl">HOURS</div><div class="c-val">Mon – Sat: 8am – 9pm<br>Sunday: 9am – 7pm</div></div></div>
+        <div class="map-box"><span>GOOGLE MAPS EMBED</span></div>
+        <a href="https://wa.me/919876543210" class="wa-btn">💬 &nbsp; ORDER VIA WHATSAPP</a>
+      </div>
+      <div class="reveal-right">
+        <div class="form-wrap">
+          <div class="form-title">Place an enquiry</div>
+          <div class="form-row">
+            <div class="fg"><label>YOUR NAME</label><input type="text" placeholder="e.g. Priya Sharma"></div>
+            <div class="fg"><label>PHONE</label><input type="tel" placeholder="+91 98765 43210"></div>
+          </div>
+          <div class="fg"><label>OCCASION</label><select><option value="" disabled selected>Select occasion</option><option>Wedding</option><option>Diwali</option><option>Pongal</option><option>Birthday</option><option>Corporate</option><option>Other</option></select></div>
+          <div class="fg"><label>MESSAGE</label><textarea placeholder="Tell us what you need — quantity, date, special requests..."></textarea></div>
+          <button class="form-send">SEND ENQUIRY</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-row">
+        <img src="public/logo.png" alt="Logo" class="footer-logo-img">
+        <div class="footer-brand-name">Sri Annapoorneswri Sweets</div>
+      </div>
+      <div class="footer-brand-tag">Named after the goddess of nourishment and abundance. Crafting traditional South Indian sweets with devotion since 2000.</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">NAVIGATE</div>
+      <a href="#home">Home</a><a href="#about">About Us</a><a href="#menu">Our Menu</a><a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">CONTACT</div>
+      <a href="tel:+919876543210">+91 98765 43210</a>
+      <a href="mailto:hello@sriannapoorneswri.com">hello@sriannapoorneswri.com</a>
+      <a href="#">Basavanagudi, Bengaluru</a>
+      <a href="#">Mon–Sat: 8am – 9pm</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Sri Annapoorneswri Sweets · All rights reserved</div>
+    <div class="footer-socials">
+      <a href="#" class="fs">f</a><a href="#" class="fs">ig</a><a href="#" class="fs">yt</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
