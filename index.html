@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sri Annapoorneswri Sweets</title>
+<title>Sri Annapoorneswari Sweets</title>
 <link rel="icon" type="image/png" href="public/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -30,7 +30,7 @@
 <nav id="nav">
   <a href="#home" class="nav-brand">
     <img src="public/logo.png" alt="Sri Annapoorneswri Sweets Logo" class="nav-logo-img">
-    <span class="nav-brand-text">Sri Annapoorneswri Sweets</span>
+    <span class="nav-brand-text">Sri Annapoorneswari Sweets</span>
   </a>
   <ul class="nav-links">
     <li><a href="#home">HOME</a></li>
@@ -49,7 +49,7 @@
     <div class="hero-left-pattern"></div>
     <div class="hero-number">25</div>
     <div class="hero-tag">EST. 2000 · BENGALURU</div>
-    <h1 class="hero-h1">Sri<br><em>Annapoorneswri</em><br>Sweets</h1>
+    <h1 class="hero-h1">Sri<br><em>Annapoorneswari</em><br>Sweets</h1>
     <p class="hero-sub">Named after the goddess of nourishment and abundance. Every sweet is an offering of devotion, crafted with the purest South Indian tradition.</p>
     <div class="hero-btns">
       <a href="#menu" class="btn-primary">EXPLORE MENU</a>
@@ -90,16 +90,16 @@
     <span class="marquee-item"><span class="marquee-dot"></span>FESTIVE BOXES</span>
     <span class="marquee-item"><span class="marquee-dot"></span>CHOCOLATE SWEETS</span>
     <span class="marquee-item"><span class="marquee-dot"></span>SUGAR FREE</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>WEDDING HAMPERS</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>PONGAL SPECIALS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>WEDDING SWEETS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>SAVIOURS</span>
     <span class="marquee-item"><span class="marquee-dot"></span>KAJU KATLI</span>
     <span class="marquee-item"><span class="marquee-dot"></span>MOTICHOOR LADOO</span>
     <span class="marquee-item"><span class="marquee-dot"></span>BADAM HALWA</span>
     <span class="marquee-item"><span class="marquee-dot"></span>FESTIVE BOXES</span>
     <span class="marquee-item"><span class="marquee-dot"></span>CHOCOLATE SWEETS</span>
     <span class="marquee-item"><span class="marquee-dot"></span>SUGAR FREE</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>WEDDING HAMPERS</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>PONGAL SPECIALS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>WEDDING SWEETS</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>SAVIOURS</span>
   </div>
 </div>
 
@@ -112,9 +112,7 @@
         <div class="about-img-main">
           <img src="public/logo.png" alt="Sri Annapoorneswri Sweets" class="about-logo-img">
         </div>
-        <div class="about-img-accent">
-          <div class="about-img-accent-inner">✿</div>
-        </div>
+        
       </div>
     </div>
     <div class="about-right">
@@ -144,33 +142,32 @@
       <div class="filter-pills">
         <button class="pill on" onclick="doFilter('all',this)">ALL</button>
         <button class="pill" onclick="doFilter('trad',this)">TRADITIONAL</button>
-        <button class="pill" onclick="doFilter('choc',this)">CHOCOLATE</button>
         <button class="pill" onclick="doFilter('fest',this)">FESTIVE</button>
-        <button class="pill" onclick="doFilter('sf',this)">SUGAR-FREE</button>
+        <button class="pill" onclick="doFilter('sf',this)">SAVIOURS</button>
       </div>
     </div>
     <div class="sweet-list" id="sweetList">
-      <div class="sweet-row reveal" data-c="trad"><div class="sweet-row-num">01</div><div class="sweet-row-info"><div class="sweet-row-name">Kaju Sweets</div><div class="sweet-row-desc">Silken cashew confections — katli, roll, pista barfi, and kaju rose</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
-      <div class="sweet-row reveal" data-c="trad" style="transition-delay:0.05s"><div class="sweet-row-num">02</div><div class="sweet-row-info"><div class="sweet-row-name">Ladoos</div><div class="sweet-row-desc">Besan, motichoor, rava, coconut, and til ladoos — spheres of celebration</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
-      <div class="sweet-row reveal" data-c="trad" style="transition-delay:0.1s"><div class="sweet-row-num">03</div><div class="sweet-row-info"><div class="sweet-row-name">Halwa</div><div class="sweet-row-desc">Slow-cooked carrot, moong dal, badam, and rava halwa — warm as a blessing</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
-      <div class="sweet-row reveal" data-c="choc" style="transition-delay:0.15s"><div class="sweet-row-num">04</div><div class="sweet-row-info"><div class="sweet-row-name">Chocolate Sweets</div><div class="sweet-row-desc">Traditional sweets reimagined with Belgian chocolate — modern, indulgent gifting</div></div><div class="sweet-row-tag">CHOCOLATE</div><div class="sweet-row-arrow">→</div></div>
-      <div class="sweet-row reveal" data-c="fest" style="transition-delay:0.2s"><div class="sweet-row-num">05</div><div class="sweet-row-info"><div class="sweet-row-name">Festive Gift Boxes</div><div class="sweet-row-desc">Curated luxury hampers for Diwali, weddings, Pongal, and every sacred occasion</div></div><div class="sweet-row-tag">FESTIVE</div><div class="sweet-row-arrow">→</div></div>
-      <div class="sweet-row reveal" data-c="sf" style="transition-delay:0.25s"><div class="sweet-row-num">06</div><div class="sweet-row-info"><div class="sweet-row-name">Sugar-Free Collection</div><div class="sweet-row-desc">Jaggery and natural sweetener alternatives — indulgence without compromise</div></div><div class="sweet-row-tag">SUGAR-FREE</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="trad"><div class="sweet-row-num">01</div><div class="sweet-row-info"><div class="sweet-row-name">Kaju Sweets</div><div class="sweet-row-desc">Silken cashew confections — Kaju Katli</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="trad" style="transition-delay:0.05s"><div class="sweet-row-num">02</div><div class="sweet-row-info"><div class="sweet-row-name">Ladoos</div><div class="sweet-row-desc">  motichoor,Regular — spheres of celebration</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="trad" style="transition-delay:0.1s"><div class="sweet-row-num">03</div><div class="sweet-row-info"><div class="sweet-row-name">Mysor Pak</div><div class="sweet-row-desc">Ghee Mysore Pak, Regular , Milk Mysore Pak — warm as a blessing</div></div><div class="sweet-row-tag">TRADITIONAL</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="choc" style="transition-delay:0.15s"><div class="sweet-row-num">04</div><div class="sweet-row-info"><div class="sweet-row-name">Besan Burfis</div><div class="sweet-row-desc">Horlicks burfi, Boost Burfi  — modern, indulgent gifting</div></div><div class="sweet-row-tag">BURFIS</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="fest" style="transition-delay:0.2s"><div class="sweet-row-num">05</div><div class="sweet-row-info"><div class="sweet-row-name">Festive  Boxes</div><div class="sweet-row-desc">festive boxes for Diwali, weddings,Party, catering  and every sacred occasion</div></div><div class="sweet-row-tag">FESTIVE</div><div class="sweet-row-arrow">→</div></div>
+      <div class="sweet-row reveal" data-c="sf" style="transition-delay:0.25s"><div class="sweet-row-num">06</div><div class="sweet-row-info"><div class="sweet-row-name">Saviours</div><div class="sweet-row-desc">Big , Small, Cornflakes — spice in every bite</div></div><div class="sweet-row-tag">SAVIOURS</div><div class="sweet-row-arrow">→</div></div>
     </div>
   </div>
 </section>
 
 <div class="highlight-band">
-  <div class="hb-item reveal"><div class="hb-num">01</div><div class="hb-title">HANDCRAFTED DAILY</div><div class="hb-desc">Every sweet made fresh by hand each morning using traditional methods</div></div>
-  <div class="hb-item reveal" style="transition-delay:0.1s"><div class="hb-num">02</div><div class="hb-title">PURE INGREDIENTS</div><div class="hb-desc">No preservatives, no artificial colours — only nature's finest</div></div>
-  <div class="hb-item reveal" style="transition-delay:0.2s"><div class="hb-num">03</div><div class="hb-title">LUXURY PACKAGING</div><div class="hb-desc">Gift boxes designed for weddings, festivals, and every celebration</div></div>
+  <div class="hb-item reveal"><div class="hb-num">01</div><div class="hb-title">HANDCRAFTED DAILY</div><div class="hb-desc">Every sweet made fresh everytime</div></div>
+  <div class="hb-item reveal" style="transition-delay:0.1s"><div class="hb-num">02</div><div class="hb-title">PURE INGREDIENTS</div><div class="hb-desc"> only nature's finest</div></div>
+  <div class="hb-item reveal" style="transition-delay:0.2s"><div class="hb-num">03</div><div class="hb-title">BULK ORDERING</div><div class="hb-desc"> boxes  for weddings, festivals, and every celebration</div></div>
 </div>
 
 <div class="testi-section">
   <div class="testi-left reveal-left">
     <div class="testi-quote-mark">"</div>
-    <p class="testi-text" id="testiText">The kaju katli melts on your tongue like a prayer answered. We have ordered for three weddings and the quality never wavers.</p>
-    <div class="testi-author" id="testiAuthor">— MEENA KRISHNAMURTHY, BENGALURU</div>
+    <p class="testi-text" id="testiText">/</p>
+    <div class="testi-author" id="testiAuthor">/</div>
     <div class="testi-dots">
       <div class="testi-dot on" onclick="setTesti(0)"></div>
       <div class="testi-dot" onclick="setTesti(1)"></div>
